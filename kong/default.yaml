@@ -1,0 +1,164 @@
+_format_version: "1.1"
+_workspace: default
+services:
+- connect_timeout: 60000
+  host: upstream
+  name: Service3
+  path: /anything
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: route5
+    paths:
+    - /route5
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+    plugins:
+    - name: basic-auth
+      config:
+        anonymous: 325ebb38-603d-4d06-a4c8-c95db2ee1eb9
+        hide_credentials: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+consumers:
+- username: anybody
+upstreams:
+- name: upstream
+  algorithm: round-robin
+  slots: 10000
+  healthchecks:
+    active:
+      concurrency: 10
+      healthy:
+        http_statuses:
+        - 200
+        - 302
+        interval: 0
+        successes: 0
+      http_path: /
+      https_verify_certificate: true
+      type: http
+      timeout: 1
+      unhealthy:
+        http_failures: 0
+        http_statuses:
+        - 429
+        - 404
+        - 500
+        - 501
+        - 502
+        - 503
+        - 504
+        - 505
+        tcp_failures: 0
+        timeouts: 0
+        interval: 0
+    passive:
+      healthy:
+        http_statuses:
+        - 200
+        - 201
+        - 202
+        - 203
+        - 204
+        - 205
+        - 206
+        - 207
+        - 208
+        - 226
+        - 300
+        - 301
+        - 302
+        - 303
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        successes: 0
+      type: http
+      unhealthy:
+        http_failures: 0
+        http_statuses:
+        - 429
+        - 500
+        - 503
+        tcp_failures: 0
+        timeouts: 0
+    threshold: 0
+  hash_on: none
+  hash_fallback: none
+  hash_on_cookie_path: /
+  targets:
+  - target: httpbin.apim.eu:80
+    weight: 100
+  - target: httpbin.org:80
+    weight: 10
+certificates:
+- id: 9aab857e-e515-418c-8e7a-f801c34aaa13
+  cert: |
+    -----BEGIN CERTIFICATE-----
+    MIIDbjCCAlYCCQDiACC0r2XGNDANBgkqhkiG9w0BAQsFADB5MQswCQYDVQQGEwJU
+    SDEQMA4GA1UECAwHQmFuZ2tvazEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MQ0wCwYD
+    VQQKDARNRkVDMRkwFwYDVQQLDBBEaWdpdGFsIFBsYXRmb3JtMRcwFQYDVQQDDA5r
+    b25nLmFwaWd3Lm5ldDAeFw0yMTAxMDcxMDEwMDNaFw0yMTAyMDYxMDEwMDNaMHkx
+    CzAJBgNVBAYTAlRIMRAwDgYDVQQIDAdCYW5na29rMRUwEwYDVQQHDAxEZWZhdWx0
+    IENpdHkxDTALBgNVBAoMBE1GRUMxGTAXBgNVBAsMEERpZ2l0YWwgUGxhdGZvcm0x
+    FzAVBgNVBAMMDmtvbmcuYXBpZ3cubmV0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEAvYAeoTv843qX2/ToNMieZfzGN7/bH+6ORPLHfgEP1h/Di2rEhUKs
+    ZwxSjk2I7SWTc9ars6cRLpvhNvQX89y16ssNxKLBP5NNvd9Nf1tO8uHwXHOI1j+v
+    wLH+7Rq8qXjYbyYz/ivZ9zMHSEpncXg4QIUgpOAWQA7Z9fn4mP4BZAiyf+UnrTse
+    FUSAyVvRvrMgQr2pfnvqKsaHc6p5CMXIivGtwmd6am0ISq2JKoaPn0Mf5x/hcKx6
+    zAn9spCf8SiYUdH9cp0NjLcmhfwFN+SByE6bpMVGMzQKu3X9e5t8oqS4+RRzI72d
+    1TB0RPe6Rqjap3CfaMcxoi6Grv3+doNzQQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+    AQBoTB21UIkI3Cm23EFybT+7NV6OWEYtizmp8Ksgh5enTFPamWzwqXIA70LZYyRn
+    8DnFdrDHYAVp7GJH0RZTFMFgBQWZUuzrVq3Vly9oOoZXNISQYidhUrZaBr3tExLA
+    jqPXnsnXKSZHVW8qw/n8fb9RPd2Y2JI+H9Y8InB9QGSqH41B+cwMxcQQpaA0mYgO
+    VcAZxWFvwSHNnOUUjbZOtb8/2wUWMVEXstl+PNUAhaZ/feKejySF39S3Pr4FeI1y
+    OBVZ3MdOmB685tadJ1qmm/liqYSJDZKStZVxvPg6HaxjMYjXH0c1XKm7Nr/XZtFY
+    n955XHHu8o6Aqf1idr359TqL
+    -----END CERTIFICATE-----
+  key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEogIBAAKCAQEAvYAeoTv843qX2/ToNMieZfzGN7/bH+6ORPLHfgEP1h/Di2rE
+    hUKsZwxSjk2I7SWTc9ars6cRLpvhNvQX89y16ssNxKLBP5NNvd9Nf1tO8uHwXHOI
+    1j+vwLH+7Rq8qXjYbyYz/ivZ9zMHSEpncXg4QIUgpOAWQA7Z9fn4mP4BZAiyf+Un
+    rTseFUSAyVvRvrMgQr2pfnvqKsaHc6p5CMXIivGtwmd6am0ISq2JKoaPn0Mf5x/h
+    cKx6zAn9spCf8SiYUdH9cp0NjLcmhfwFN+SByE6bpMVGMzQKu3X9e5t8oqS4+RRz
+    I72d1TB0RPe6Rqjap3CfaMcxoi6Grv3+doNzQQIDAQABAoIBAFpq1TKNUt6fUfIL
+    avg0eQ+kildzXXRg+NUBGhqPGyVJxp2w9c+3vlb01Dc924V7ll2BIi/4GQSqL81u
+    rjcXKl27QPh/x8Ez4bYk4+9Oe9772xnhrnq7rHo+86niRf5+wJZYHhq6haejW2gs
+    yCql+AEhBDBnE3bBH1J0UR9+ot89S6JAPlEWFm1dvkLnF7XwJbjnoqFc2hV8rMvQ
+    afhivd1dGAuLHlLuOGT2EuNGtKU5Sg84m5hqhI2AjCGLXimimQDG4BAQkEX7DGPq
+    sZypXMesmTaxOy4wY2KmeRPWdOOUA1FmG0FujUMUVMLskqRa+8VKUTRC98g4hPSo
+    4JPg7RkCgYEA9iJSTrw29KZ3C/8qNhdxz4wZLYi/4PoNLqZ1pQSY25mbfAMhPIJU
+    iqy1dSHpPrtcPeYs/eAw7NKgqs1WnVRPTsujJQQ4ZLGJXMrHThPPuBRjjlWB0jGD
+    ZsdpjFdxSxQ3vGhxqp/FVgbzIL4EmjeOAPo4N9Wq3pf5hVJiVY1sMRcCgYEAxRio
+    kgiCSoMFwF1dQTr2OqZSyL5Y3bMRQQXyc6KdwOF2gQ4nCPRKG6UFr5ZhOc3dGOqT
+    vFdnU0qZRLtIIGd/ZC90FQnON4fTqkUUFjotb0NruWawuyd//4nNTtHgFMFKdr+/
+    SMG3Sc5j51IVxnBqcOJFEtpy26rLy7qTuZKTxWcCgYAsahEUKB56kzdUMN07GYvt
+    +cfpUY3eWQDb9Cmyd1vl9Jf8DsyGkLYUuAmec1oVedWxTcG8piHt+iwH5jnE9hvB
+    ijmMSnCqquawmd7RFf4bp4I3gvKELW8ass03B+hnteRA2U/5jA8d8O8ab2+BLJkx
+    T/WpDaNhu2bJSg54haaKTQKBgFhseaQagSmgooHs4RuUskcZu2YoT4IXBhSf8GgE
+    erW/8QRxLv4LavwACw79bl0aiKjXBLSomch6XUzCoNc416RAzdlqbsPnAgUPvLVE
+    IIIcQ0YIVh2A2SHx1tQXwGpPVXL1D4I6tlo8aAGth+thH7/JI6gTrRf0Bj4+VGwa
+    4ITdAoGAVn59JkZY818FtrVvcxkTXOlpqJA1B+dxHvj/j/7oKIFksSB0yE777SC1
+    JzYT75fTiqQIXDCJD0fPS/TIDX1CxfSTyppVSKRL4rWbX/VLMjVL2MOl0qk4Jbmd
+    gyQV3J7Ugq/UaA+fdftpJnHQhfv2HsR0KTn33tuM6QW33/CWqQ0=
+    -----END RSA PRIVATE KEY-----
+  snis:
+  - name: kong.apigw.net
+    tags:
+    - kong.apigw.net
