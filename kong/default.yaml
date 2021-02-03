@@ -1,7 +1,7 @@
 _format_version: "1.1"
 services:
-- name: Service1
-  url: https://restcountries.eu/rest/v2/alpha/th
+- name: Service
+  url: http://httpbin.org:80
   plugins: []
   routes:
   - tags:
@@ -10,7 +10,7 @@ services:
     methods:
     - GET
     paths:
-    - /route1
+    - /route
     strip_path: true
   tags:
   - OAS3_import
