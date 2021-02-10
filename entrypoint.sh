@@ -11,7 +11,7 @@ deck sync --kong-addr http://kong-ee:8001 --headers Kong-Admin-Token:kong -s kon
 deck validate --kong-addr http://kong-ee:8001 --headers Kong-Admin-Token:kong -s kong/Internal.yaml
 deck sync --kong-addr http://kong-ee:8001 --headers Kong-Admin-Token:kong -s kong/Internal.yaml
 
-if [ deck ping --kong-addr http://kong-ee:8001 --headers Kong-Admin-Token:kong ]
+if deck ping --kong-addr http://kong-ee:8001 --headers Kong-Admin-Token:kong
 then
   exit 0
 fi
