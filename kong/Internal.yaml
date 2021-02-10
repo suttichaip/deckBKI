@@ -1,0 +1,201 @@
+_format_version: "1.1"
+_workspace: Internal
+services:
+- connect_timeout: 60000
+  host: www.crcind.com
+  name: Service1
+  path: /csp/samples/SOAP.Demo.cls
+  port: 443
+  protocol: https
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: route2
+    paths:
+    - /route2
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - BGroup
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: ldap-auth-advanced
+      config:
+        anonymous: ""
+        attribute: uid
+        base_dn: DC=example,DC=com
+        bind_dn: null
+        cache_ttl: 60
+        consumer_by:
+        - username
+        - custom_id
+        consumer_optional: false
+        group_base_dn: null
+        group_member_attribute: memberOf
+        group_name_attribute: null
+        header_type: ldap
+        hide_credentials: false
+        keepalive: 60000
+        ldap_host: ldap.forumsys.com
+        ldap_password: null
+        ldap_port: 389
+        ldaps: false
+        start_tls: false
+        timeout: 10000
+        verify_ldap_host: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: xml-json-transformer
+      config:
+        ignore_content_type: false
+      enabled: false
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: route3
+    paths:
+    - /route3
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+    plugins:
+    - name: basic-auth
+      config:
+        anonymous: null
+        hide_credentials: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: key-auth
+      config:
+        anonymous: null
+        hide_credentials: false
+        key_in_body: false
+        key_names:
+        - apikey
+        run_on_preflight: true
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: rate-limiting-advanced
+      config:
+        dictionary_name: kong_rate_limiting_counters
+        header_name: null
+        hide_client_headers: false
+        identifier: consumer
+        limit:
+        - 5
+        - 30
+        namespace: SyZXubjcNAafHvntPSMtV6EJBi1OQOBy
+        redis:
+          cluster_addresses: null
+          database: 0
+          host: null
+          password: null
+          port: null
+          sentinel_addresses: null
+          sentinel_master: null
+          sentinel_password: null
+          sentinel_role: null
+          server_name: null
+          ssl: false
+          ssl_verify: false
+          timeout: 2000
+        strategy: cluster
+        sync_rate: 5
+        window_size:
+        - 60
+        - 3600
+        window_type: sliding
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+consumers:
+- username: ConsumerA
+  keyauth_credentials:
+  - key: ConsumerA.key
+  basicauth_credentials:
+  - username: ConsumerA
+    password: 5f3a8211b7615322d2e3fdee2ae67b7a8b432f47
+  acls:
+  - group: AGroup
+- custom_id: gauss
+  username: gauss
+  plugins:
+  - name: rate-limiting-advanced
+    config:
+      dictionary_name: kong_rate_limiting_counters
+      header_name: null
+      hide_client_headers: false
+      identifier: consumer
+      limit:
+      - 3
+      - 30
+      namespace: V7Ez5DlirChcI6kOYmlxOBEb2mDhX3kp
+      redis:
+        cluster_addresses: null
+        database: 0
+        host: null
+        password: null
+        port: null
+        sentinel_addresses: null
+        sentinel_master: null
+        sentinel_password: null
+        sentinel_role: null
+        server_name: null
+        ssl: false
+        ssl_verify: false
+        timeout: 2000
+      strategy: cluster
+      sync_rate: 5
+      window_size:
+      - 60
+      - 3600
+      window_type: sliding
+    enabled: true
+    protocols:
+    - grpc
+    - grpcs
+    - http
+    - https
+  keyauth_credentials:
+  - key: guass.key
+  basicauth_credentials:
+  - username: gauss
+    password: 459d10124ec9614af99975239222a0ad91fe8842
+  acls:
+  - group: BGroup
