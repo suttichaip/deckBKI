@@ -2,11 +2,11 @@ _format_version: "1.1"
 _workspace: Internal
 services:
 - connect_timeout: 60000
-  host: www.crcind.com
+  host: 172.16.53.19
   name: Service1
-  path: /csp/samples/SOAP.Demo.cls
-  port: 443
-  protocol: https
+  path: /p_clm_data_ws/NON_PA_RESERVED_WS.asmx/get_claim_reserved
+  port: 80
+  protocol: http
   read_timeout: 60000
   retries: 5
   write_timeout: 60000
@@ -28,7 +28,7 @@ services:
         - BGroup
         deny: null
         hide_groups_header: false
-      enabled: true
+      enabled: false
       protocols:
       - grpc
       - grpcs
@@ -58,7 +58,7 @@ services:
         start_tls: false
         timeout: 10000
         verify_ldap_host: false
-      enabled: true
+      enabled: false
       protocols:
       - grpc
       - grpcs
@@ -67,7 +67,7 @@ services:
     - name: xml-json-transformer
       config:
         ignore_content_type: false
-      enabled: false
+      enabled: true
       protocols:
       - grpc
       - grpcs
@@ -150,7 +150,7 @@ consumers:
   - key: ConsumerA.key
   basicauth_credentials:
   - username: ConsumerA
-    password: 5f3a8211b7615322d2e3fdee2ae67b7a8b432f47
+    password: 8f609caf046f650a457da8b8d8a610b075906df3
   acls:
   - group: AGroup
 - custom_id: gauss
@@ -196,6 +196,6 @@ consumers:
   - key: guass.key
   basicauth_credentials:
   - username: gauss
-    password: 459d10124ec9614af99975239222a0ad91fe8842
+    password: 84a0bfe1a3548e623274aca8ff2f5de672bcc04e
   acls:
   - group: BGroup

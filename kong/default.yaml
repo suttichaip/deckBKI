@@ -4,7 +4,6 @@ services:
 - connect_timeout: 60000
   host: upstream
   name: Service3
-  path: /anything
   port: 80
   protocol: http
   read_timeout: 60000
@@ -101,11 +100,6 @@ upstreams:
   hash_on: none
   hash_fallback: none
   hash_on_cookie_path: /
-  targets:
-  - target: httpbin.apim.eu:80
-    weight: 100
-  - target: httpbin.org:80
-    weight: 10
 certificates:
 - id: 9aab857e-e515-418c-8e7a-f801c34aaa13
   cert: |
