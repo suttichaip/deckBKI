@@ -1,6 +1,20 @@
 _format_version: "1.1"
 _workspace: default
 services:
+- name: Service1
+  url: https://bkiccb.bangkokinsurance.com/api/TestAPI/KongTest
+  plugins: []
+  routes:
+  - tags:
+    - OAS3_import
+    name: route1
+    methods:
+    - POST
+    paths:
+    - /route1
+    strip_path: true
+  tags:
+  - OAS3_import
 - connect_timeout: 60000
   host: upstream
   name: Service3
