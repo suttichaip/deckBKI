@@ -4,6 +4,7 @@ services:
 - connect_timeout: 60000
   host: upstream
   name: Service3
+  path: /anything
   port: 80
   protocol: http
   read_timeout: 60000
@@ -23,7 +24,7 @@ services:
     plugins:
     - name: basic-auth
       config:
-        anonymous: 325ebb38-603d-4d06-a4c8-c95db2ee1eb9
+        anonymous: f1c0540d-dcee-4b88-b7df-1c901853e824
         hide_credentials: false
       enabled: true
       protocols:
@@ -100,6 +101,11 @@ upstreams:
   hash_on: none
   hash_fallback: none
   hash_on_cookie_path: /
+  targets:
+  - target: 10.16.4.79:8090
+    weight: 100
+  - target: 10.16.4.79:8091
+    weight: 100
 certificates:
 - id: 9aab857e-e515-418c-8e7a-f801c34aaa13
   cert: |

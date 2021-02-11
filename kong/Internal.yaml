@@ -150,7 +150,7 @@ consumers:
   - key: ConsumerA.key
   basicauth_credentials:
   - username: ConsumerA
-    password: 8f609caf046f650a457da8b8d8a610b075906df3
+    password: 6f32c55f50762f8379c8b702d586f89652309bf4
   acls:
   - group: AGroup
 - custom_id: gauss
@@ -196,6 +196,6 @@ consumers:
   - key: guass.key
   basicauth_credentials:
   - username: gauss
-    password: 84a0bfe1a3548e623274aca8ff2f5de672bcc04e
+    password: 9d0a361c609842d1821404e7dbd760f65f9feaf8
   acls:
   - group: BGroup
