@@ -2,7 +2,7 @@ _format_version: "1.1"
 _workspace: Internal
 services:
 - connect_timeout: 60000
-  host: 172.16.53.19
+  host: bkiintradv.bki.co.th
   name: Service1
   path: /p_clm_data_ws/NON_PA_RESERVED_WS.asmx/get_claim_reserved
   port: 80
@@ -150,7 +150,7 @@ consumers:
   - key: ConsumerA.key
   basicauth_credentials:
   - username: ConsumerA
-    password: 6f32c55f50762f8379c8b702d586f89652309bf4
+    password: 44bd61293403df0ef88e6b768f0661abae284bd6
   acls:
   - group: AGroup
 - custom_id: gauss
@@ -196,6 +196,6 @@ consumers:
   - key: guass.key
   basicauth_credentials:
   - username: gauss
-    password: 9d0a361c609842d1821404e7dbd760f65f9feaf8
+    password: 8716cf957676db3f682fd4b8d7ec9835dd1c66f8
   acls:
   - group: BGroup

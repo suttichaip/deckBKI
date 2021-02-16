@@ -276,6 +276,6 @@ consumers:
   oauth2_credentials:
   - name: ExternalConsumer
     client_id: LZwAGtteDFeOYalHyz8nolnGF9j5n3VV
-    client_secret: $pbkdf2-sha512$i=10000,l=32$6YbssaD7dx5OVvNq++hgGA$bmYfJ+lXT9l4sHNoNIgVprFpGGKdVJkA+hJyEGsE9bA
+    client_secret: $pbkdf2-sha512$i=10000,l=32$OVyl7lEwJlVxYiAaWVaKHw$YnNVIHxLQn1s+a78Mpik9GehIAd7m7ftSWpBngttDFk
     redirect_uris:
     - https://konggatewaypoc.bangkokinsurance.com/route4v

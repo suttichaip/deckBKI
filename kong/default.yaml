@@ -24,7 +24,7 @@ services:
     plugins:
     - name: basic-auth
       config:
-        anonymous: f1c0540d-dcee-4b88-b7df-1c901853e824
+        anonymous: 5709ece9-a6dc-499f-a35e-094db49418b8
         hide_credentials: false
       enabled: true
       protocols:
