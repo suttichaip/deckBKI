@@ -28,7 +28,7 @@ services:
         - BGroup
         deny: null
         hide_groups_header: false
-      enabled: false
+      enabled: true
       protocols:
       - grpc
       - grpcs
@@ -37,9 +37,9 @@ services:
     - name: ldap-auth-advanced
       config:
         anonymous: ""
-        attribute: uid
-        base_dn: DC=example,DC=com
-        bind_dn: null
+        attribute: CN
+        base_dn: DC=bki,DC=co,DC=th
+        bind_dn: CN=KONG POC,OU=Service Account,OU=Systems,OU=BKI-Users,OU=BKI,DC=bki,DC=co,DC=th
         cache_ttl: 60
         consumer_by:
         - username
@@ -51,14 +51,14 @@ services:
         header_type: ldap
         hide_credentials: false
         keepalive: 60000
-        ldap_host: ldap.forumsys.com
+        ldap_host: adbki.bki.co.th
         ldap_password: null
         ldap_port: 389
         ldaps: false
         start_tls: false
         timeout: 10000
         verify_ldap_host: false
-      enabled: false
+      enabled: true
       protocols:
       - grpc
       - grpcs
@@ -153,8 +153,8 @@ consumers:
     password: 44bd61293403df0ef88e6b768f0661abae284bd6
   acls:
   - group: AGroup
-- custom_id: gauss
-  username: gauss
+- custom_id: KONG POC
+  username: KONG POC
   plugins:
   - name: rate-limiting-advanced
     config:
@@ -193,9 +193,9 @@ consumers:
     - http
     - https
   keyauth_credentials:
-  - key: guass.key
+  - key: kongpoc.key
   basicauth_credentials:
-  - username: gauss
-    password: 8716cf957676db3f682fd4b8d7ec9835dd1c66f8
+  - username: kongpoc
+    password: eac031380e38fba188c4ef49e82c27d972492488
   acls:
   - group: BGroup
