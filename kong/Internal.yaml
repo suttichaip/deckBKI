@@ -38,8 +38,8 @@ services:
       config:
         anonymous: ""
         attribute: CN
-        base_dn: DC=bki,DC=co,DC=th
-        bind_dn: CN=KONG POC,OU=Service Account,OU=Systems,OU=BKI-Users,OU=BKI,DC=bki,DC=co,DC=th
+        base_dn: OU=Service Account,OU=Systems,OU=BKI-Users,OU=BKI,DC=bki,DC=co,DC=th
+        bind_dn: null
         cache_ttl: 60
         consumer_by:
         - username
@@ -165,7 +165,7 @@ consumers:
       limit:
       - 3
       - 30
-      namespace: V7Ez5DlirChcI6kOYmlxOBEb2mDhX3kp
+      namespace: roG2klv899EZM2AU3DH3FbXA4FIuPRnl
       redis:
         cluster_addresses: null
         database: 0
@@ -196,6 +196,6 @@ consumers:
   - key: kongpoc.key
   basicauth_credentials:
   - username: kongpoc
-    password: eac031380e38fba188c4ef49e82c27d972492488
+    password: a4fbe2882bc8427debd9c64b68f2fb61098d8af4
   acls:
   - group: BGroup

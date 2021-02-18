@@ -50,7 +50,7 @@ services:
       config:
         bypass_on_err: false
         cache_control: false
-        cache_ttl: 300
+        cache_ttl: 10
         content_type:
         - text/plain
         - application/json
@@ -79,7 +79,8 @@ services:
         - 404
         storage_ttl: null
         strategy: memory
-        vary_headers: null
+        vary_headers:
+        - refresh:key
         vary_query_params: null
       enabled: true
       protocols:
