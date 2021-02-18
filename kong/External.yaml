@@ -50,7 +50,7 @@ services:
       config:
         bypass_on_err: false
         cache_control: false
-        cache_ttl: 10
+        cache_ttl: 30
         content_type:
         - text/plain
         - application/json
