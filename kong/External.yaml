@@ -3,7 +3,7 @@ _workspace: External
 services:
 - connect_timeout: 60000
   host: 172.16.55.76
-  name: Show_Table
+  name: ShowTable-Service
   path: /ords/hr/rest-v1/table
   port: 8080
   protocol: http
@@ -127,7 +127,7 @@ services:
       - https
 - connect_timeout: 60000
   host: 172.16.55.76
-  name: Store_Salary
+  name: StoreSalary-Service
   path: /ords/hr/rest-v1/salary
   port: 8080
   protocol: http
@@ -147,7 +147,7 @@ services:
     https_redirect_status_code: 426
 - connect_timeout: 60000
   host: 172.16.55.76
-  name: View_Employee
+  name: ViewEmployee-Service
   path: /ords/hr/rest-v1/employees
   port: 8080
   protocol: http

@@ -3,7 +3,7 @@ _workspace: default
 services:
 - connect_timeout: 60000
   host: service.v2
-  name: InformationService
+  name: Information-Service
   path: /users
   port: 80
   protocol: http
