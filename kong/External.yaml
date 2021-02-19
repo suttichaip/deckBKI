@@ -3,7 +3,151 @@ _workspace: External
 services:
 - connect_timeout: 60000
   host: 172.16.55.76
-  name: Service2_View
+  name: Show_Table
+  path: /ords/hr/rest-v1/table
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: route4t
+    paths:
+    - /route4t
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+    plugins:
+    - name: oauth2
+      config:
+        accept_http_if_already_terminated: false
+        anonymous: null
+        auth_header_name: authorization
+        enable_authorization_code: true
+        enable_client_credentials: true
+        enable_implicit_grant: false
+        enable_password_grant: false
+        global_credentials: true
+        hide_credentials: false
+        mandatory_scope: false
+        persistent_refresh_token: false
+        pkce: lax
+        provision_key: ZLYlRq1GXFtsMtYGHzsPFGlk8f8HufRE
+        refresh_token_ttl: 1.2096e+06
+        scopes: null
+        token_expiration: 7200
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: proxy-cache-advanced
+      config:
+        bypass_on_err: false
+        cache_control: false
+        cache_ttl: 300
+        content_type:
+        - text/plain
+        - application/json
+        memory:
+          dictionary_name: kong_db_cache
+        redis:
+          cluster_addresses: null
+          database: 0
+          host: null
+          password: null
+          port: null
+          sentinel_addresses: null
+          sentinel_master: null
+          sentinel_password: null
+          sentinel_role: null
+          server_name: null
+          ssl: false
+          ssl_verify: false
+          timeout: 2000
+        request_method:
+        - GET
+        - HEAD
+        response_code:
+        - 200
+        - 301
+        - 404
+        storage_ttl: null
+        strategy: memory
+        vary_headers: null
+        vary_query_params: null
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: response-transformer-advanced
+      config:
+        add:
+          headers: []
+          if_status:
+          - "401"
+          json:
+          - 'message: Contact Administrator for OAuth2.0'
+          json_types: []
+        allow:
+          json: null
+        append:
+          headers: []
+          if_status: []
+          json: []
+          json_types: []
+        remove:
+          headers: []
+          if_status: []
+          json: []
+        rename:
+          headers: []
+          if_status: []
+        replace:
+          body: null
+          headers: []
+          if_status: []
+          json: []
+          json_types: []
+        transform:
+          functions: []
+          if_status: []
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: 172.16.55.76
+  name: Store_Salary
+  path: /ords/hr/rest-v1/salary
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: route4s
+    paths:
+    - /route4s
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    regex_priority: 0
+    strip_path: true
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: 172.16.55.76
+  name: View_Employee
   path: /ords/hr/rest-v1/employees
   port: 8080
   protocol: http
@@ -96,150 +240,6 @@ services:
           - "401"
           json:
           - Message:Contact administator for OAuth2.0
-          json_types: []
-        allow:
-          json: null
-        append:
-          headers: []
-          if_status: []
-          json: []
-          json_types: []
-        remove:
-          headers: []
-          if_status: []
-          json: []
-        rename:
-          headers: []
-          if_status: []
-        replace:
-          body: null
-          headers: []
-          if_status: []
-          json: []
-          json_types: []
-        transform:
-          functions: []
-          if_status: []
-      enabled: true
-      protocols:
-      - grpc
-      - grpcs
-      - http
-      - https
-- connect_timeout: 60000
-  host: 172.16.55.76
-  name: Service2_store
-  path: /ords/hr/rest-v1/salary
-  port: 8080
-  protocol: http
-  read_timeout: 60000
-  retries: 5
-  write_timeout: 60000
-  routes:
-  - name: route4s
-    paths:
-    - /route4s
-    path_handling: v0
-    preserve_host: false
-    protocols:
-    - http
-    regex_priority: 0
-    strip_path: true
-    https_redirect_status_code: 426
-- connect_timeout: 60000
-  host: 172.16.55.76
-  name: Service2_table
-  path: /ords/hr/rest-v1/table
-  port: 8080
-  protocol: http
-  read_timeout: 60000
-  retries: 5
-  write_timeout: 60000
-  routes:
-  - name: route4t
-    paths:
-    - /route4t
-    path_handling: v0
-    preserve_host: false
-    protocols:
-    - http
-    regex_priority: 0
-    strip_path: true
-    https_redirect_status_code: 426
-    plugins:
-    - name: oauth2
-      config:
-        accept_http_if_already_terminated: false
-        anonymous: null
-        auth_header_name: authorization
-        enable_authorization_code: true
-        enable_client_credentials: true
-        enable_implicit_grant: false
-        enable_password_grant: false
-        global_credentials: true
-        hide_credentials: false
-        mandatory_scope: false
-        persistent_refresh_token: false
-        pkce: lax
-        provision_key: ZLYlRq1GXFtsMtYGHzsPFGlk8f8HufRE
-        refresh_token_ttl: 1.2096e+06
-        scopes: null
-        token_expiration: 7200
-      enabled: true
-      protocols:
-      - grpc
-      - grpcs
-      - http
-      - https
-    - name: proxy-cache-advanced
-      config:
-        bypass_on_err: false
-        cache_control: false
-        cache_ttl: 300
-        content_type:
-        - text/plain
-        - application/json
-        memory:
-          dictionary_name: kong_db_cache
-        redis:
-          cluster_addresses: null
-          database: 0
-          host: null
-          password: null
-          port: null
-          sentinel_addresses: null
-          sentinel_master: null
-          sentinel_password: null
-          sentinel_role: null
-          server_name: null
-          ssl: false
-          ssl_verify: false
-          timeout: 2000
-        request_method:
-        - GET
-        - HEAD
-        response_code:
-        - 200
-        - 301
-        - 404
-        storage_ttl: null
-        strategy: memory
-        vary_headers: null
-        vary_query_params: null
-      enabled: true
-      protocols:
-      - grpc
-      - grpcs
-      - http
-      - https
-    - name: response-transformer-advanced
-      config:
-        add:
-          headers: []
-          if_status:
-          - "401"
-          json:
-          - 'message: Contact Administrator for OAuth2.0'
           json_types: []
         allow:
           json: null

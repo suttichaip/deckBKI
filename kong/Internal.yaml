@@ -3,7 +3,7 @@ _workspace: Internal
 services:
 - connect_timeout: 60000
   host: bkiintradv.bki.co.th
-  name: Service1
+  name: Get_Claim_Reserved
   path: /p_clm_data_ws/NON_PA_RESERVED_WS.asmx/get_claim_reserved
   port: 80
   protocol: http
