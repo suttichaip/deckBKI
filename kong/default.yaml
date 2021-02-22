@@ -168,6 +168,8 @@ upstreams:
   targets:
   - target: 10.16.4.79:8090
     weight: 100
+  - target: 10.16.4.79:8091
+    weight: 100
 - name: service.v2
   algorithm: round-robin
   slots: 10000
